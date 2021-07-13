@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Dirigeant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,9 +20,10 @@ class DirigeantType extends AbstractType
                     'H' => 1,
                     'F' =>0
                 ],
+                'data' => 1,
                 'expanded'=>true
             ])
-            ->add('email')
+            ->add('email', EmailType::class)
         ;
     }
 

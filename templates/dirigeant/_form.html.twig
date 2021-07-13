@@ -1,8 +1,14 @@
+<select name="show_form" id="showform" class="form-control">
+    <option value="dirigeant">Dirigeant</option>
+    <option value="societe">Société</option>
+</select>
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-info">{{ button_label|default('Ajouter dirigeant') }}</button>
 {{ form_end(form) }}
+
 {{ form_start(form_societe) }}
     {{ form_widget(form_societe) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-info">{{ button_label|default('Ajouter société') }}</button>
 {{ form_end(form_societe) }}
+

@@ -3,7 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Societe;
+use App\Entity\TypeSociete;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,6 +18,10 @@ class SocieteType extends AbstractType
         $builder
             ->add('nom')
             ->add('description')
+            ->add('type', EntityType::class, [
+                'class' => TypeSociete::class,
+                'multiple' => true
+            ])
             ->add('ville')
         ;
     }

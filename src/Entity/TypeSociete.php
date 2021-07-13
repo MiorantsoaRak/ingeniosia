@@ -30,7 +30,7 @@ class TypeSociete
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Societe::class, mappedBy="type", orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity=Societe::class, mappedBy="type")
      */
     private $societes;
 
@@ -80,7 +80,7 @@ class TypeSociete
     {
         if (!$this->societes->contains($societe)) {
             $this->societes[] = $societe;
-            $societe->setType($this);
+            $societe->addType($this);
         }
 
         return $this;
@@ -89,12 +89,15 @@ class TypeSociete
     public function removeSociete(Societe $societe): self
     {
         if ($this->societes->removeElement($societe)) {
-            // set the owning side to null (unless already changed)
-            if ($societe->getType() === $this) {
-                $societe->setType(null);
-            }
+            $societe->removeType($this);
         }
 
         return $this;
     }
+
+    public function __toString(){
+        return "" . $this->getLabel();
+    }
+
+
 }
