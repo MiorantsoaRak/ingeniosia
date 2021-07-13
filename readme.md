@@ -5,16 +5,21 @@ Requirements
 ------------
 
 * PHP 7.4 or higher;
+* Make sur Composer is installed  [Get Composer][1]
+* Symfony 5 must be installed [Download Symfony][3]
+* And the [usual Symfony application requirements][2] are met.
 * PDO-MySQL PHP extension enabled;
-* and the [usual Symfony application requirements][2].
 
 Installation
 ------------
-
-[Download Symfony][4] to install the `symfony` binary on your computer, pull or download the source code and install dependancy
-
+Clone or download the project into your local machine.
 ```bash
-$ cd  ingeniosia-test/
+$ git clone https://github.com/MiorantsoaRak/ingenosya.git
+```
+
+###Install composer dependecies
+```bash
+$ cd  ingenosya/
 $ composer install
 ```
 
@@ -31,18 +36,18 @@ $ yarn encore dev
 Database
 --------
 ### Create database
+Create a database named `ingenosya` in MySQL and import the SQL file `test-ingenosya.sql` located at
 ```
-php bin/console doctrine:database:create
+./db/test-ingenosya.sql
 ```
+Make sure that the name of the database in the `.env` file is `ingenosya` too.
+
 Usage
 -----
-- Configure your environnement file .env (Database, MailDSN, ...)
 
-
-If you have [installed Symfony][4] binary, run this command:
+To start the server, run this command:
 
 ```bash
-$ cd  test-ingeniosia/
 $ symfony server:start
 ```
 
@@ -53,4 +58,8 @@ the ```.env``` file
 
 the adminer is available in ``http://localhost:{$port}``but you can change the port of worker in
 the ```.env``` file
+
+[1]: https://getcomposer.org/download
+[2]: https://symfony.com/doc/current/reference/requirements.html
+[3]: https://symfony.com/download
 
