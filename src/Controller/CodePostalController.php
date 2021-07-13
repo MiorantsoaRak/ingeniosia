@@ -63,7 +63,7 @@ class CodePostalController extends AbstractController
     /**
      * @Route("/{id}/villes", name="ville_by_code", methods={"GET"})
      */
-    public function getVilleByPostal(Request $request, CodePostal $codePostal, VilleRepository $villeRepository): JsonResponse
+    public function getVilleByCodePostal(Request $request, CodePostal $codePostal, VilleRepository $villeRepository): JsonResponse
     {
         return new JsonResponse($villeRepository->findByCodePostal($codePostal));
     }
