@@ -4,9 +4,6 @@ $(document).ready(function () {
     var code = $("#societe_codePostal");
 
     getVillesByPostalCode(code.val(), ville);
-    $("#formSociete").hide();
-    $("#formDirigeant").hide();
-
     select.change(function(){
         var selected = this.value;
         //Showing only selected form
@@ -17,6 +14,9 @@ $(document).ready(function () {
         else if (selected === "dirigeant") {
             $("#formSociete").hide();
             $("#formDirigeant").show();
+        }else{
+            $("#formSociete").hide();
+            $("#formDirigeant").hide();
         }
     })
 
