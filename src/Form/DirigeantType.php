@@ -17,10 +17,9 @@ class DirigeantType extends AbstractType
             ->add('nomPrenom')
             ->add('sexe', ChoiceType::class, [
                 'choices' => [
-                    'H' => 1,
-                    'F' =>0
+                    'homme' => "Homme",
+                    'femme' => "Femme"
                 ],
-                'data' => 1,
                 'expanded'=>true
             ])
             ->add('email', EmailType::class)

@@ -39,6 +39,11 @@ class Societe
      */
     private $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CodePostal::class, inversedBy="societes")
+     */
+    private $codePostal;
+
     public function __construct()
     {
         $this->type = new ArrayCollection();
@@ -105,6 +110,18 @@ class Societe
     public function removeType(TypeSociete $type): self
     {
         $this->type->removeElement($type);
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?CodePostal
+    {
+        return $this->codePostal;
+    }
+
+    public function setCodePostal(?CodePostal $codePostal): self
+    {
+        $this->codePostal = $codePostal;
 
         return $this;
     }

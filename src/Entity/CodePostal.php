@@ -29,9 +29,15 @@ class CodePostal
      */
     private $villes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Societe::class, mappedBy="codePostal")
+     */
+    private $societes;
+
     public function __construct()
     {
         $this->villes = new ArrayCollection();
+        $this->societes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,6 +90,36 @@ class CodePostal
     public function __toString(){
         // TODO: Implement __toString() method.
         return "".$this->code;
+    }
+
+    /**
+     * @return Collection|Societe[]
+     */
+    public function getSocietes(): Collection
+    {
+        return $this->societes;
+    }
+
+    public function addSociete(Societe $societe): self
+    {
+        if (!$this->societes->contains($societe)) {
+            $this->societes[] = $societe;
+            $societe->setCodePostal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSociete(Societe $societe): self
+    {
+        if ($this->societes->removeElement($societe)) {
+            // set the owning side to null (unless already changed)
+            if ($societe->getCodePostal() === $this) {
+                $societe->setCodePostal(null);
+            }
+        }
+
+        return $this;
     }
 
 

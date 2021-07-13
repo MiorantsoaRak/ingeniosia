@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\CodePostal;
 use App\Entity\Societe;
 use App\Entity\TypeSociete;
 use Doctrine\ORM\EntityRepository;
@@ -21,6 +22,9 @@ class SocieteType extends AbstractType
             ->add('type', EntityType::class, [
                 'class' => TypeSociete::class,
                 'multiple' => true
+            ])
+            ->add('codePostal', EntityType::class,[
+                'class'=>CodePostal::class
             ])
             ->add('ville')
         ;

@@ -13,3 +13,21 @@ import bsCustomFileInput from 'bs-custom-file-input';
 // start the Stimulus application
 import './bootstrap';
 bsCustomFileInput.init();
+
+$("#showform").change(function(){
+    var selected = this.value;
+    //Showing only selected form
+
+    if (selected === "societe") {
+        $("#formSociete").show();
+        $("#formDirigeant").hide();
+    }
+    else if (selected === "dirigeant") {
+        $("#formSociete").hide();
+        $("#formDirigeant").show();
+    }
+    else{
+        $("#formSociete").hide();
+        $("#formDirigeant").hide();
+    }
+})
