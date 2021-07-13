@@ -1,0 +1,23 @@
+{{ form_start(form_societe) }}
+<div class="mb-3">
+    {{ form_label(form_societe.nom, 'Nom du société') }}
+    {{ form_widget(form_societe.nom, {'attr': {'class': 'form-control', 'placeholder': 'Entrer le nom du société'}}) }}
+</div>
+<div class="mb-3">
+    {{ form_label(form_societe.description, 'Description') }}
+    {{ form_widget(form_societe.description, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="mb-3">
+    {{ form_label(form_societe.type, 'Type du société') }}
+    {{ form_widget(form_societe.type) }}
+</div>
+<div class="mb-3">
+    {{ form_label(form_societe.codePostal, 'Code Postal') }}
+    {{ form_widget(form_societe.codePostal, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="mb-3">
+    {{ form_label(form_societe.ville, 'Ville') }}
+    {{ form_widget(form_societe.ville, {'attr': {'class': 'form-control'}}) }}
+</div>
+<button class="btn btn-info">{{ button_label|default('Ajouter société') }}</button>
+{{ form_end(form_societe) }}

@@ -35,9 +35,6 @@ class DirigeantController extends AbstractController
         $dirigeant = new Dirigeant();
         $societe = new Societe();
         $form = $this->createForm(DirigeantType::class, $dirigeant);
-        $formSociete = $this->createForm(SocieteType::class, $societe);
-
-        $formSociete->handleRequest($request);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,18 +45,9 @@ class DirigeantController extends AbstractController
             return $this->redirectToRoute('dirigeant_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        if ($formSociete->isSubmitted() && $formSociete->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($societe);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('dirigeant_index', [], Response::HTTP_SEE_OTHER);
-        }
-
         return $this->renderForm('dirigeant/new.html.twig', [
             'dirigeant' => $dirigeant,
             'form' => $form,
-            'form_societe'=>$formSociete
         ]);
     }
 
@@ -84,7 +72,7 @@ class DirigeantController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('dirigeant_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('dirigeant/edit.html.twig', [
@@ -104,6 +92,6 @@ class DirigeantController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('dirigeant_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);
     }
 }

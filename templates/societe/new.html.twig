@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Societe{% endblock %}
+
+{% block body %}
+    {{ include('./navigation.html.twig') }}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-6">
+                 {{ include('societe/_form.html.twig') }}
+            </div>
+        </div>
+
+        <a href="{{ path('societe_index') }}">back to list</a>
+    </div>
+
+{% endblock %}

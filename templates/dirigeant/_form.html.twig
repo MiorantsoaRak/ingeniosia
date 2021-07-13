@@ -1,57 +1,17 @@
-<div class="row justify-content-md-center">
-    <div class="col-6">
-        <select name="show_form" id="showform" class="form-control">
-            <option value="">--- Veuillez choisir parmi les options ---</option>
-            <option value="dirigeant">Dirigeant</option>
-            <option value="societe">Société</option>
-        </select>
-    </div>
+{{ form_start(form) }}
+<div class="mb-3">
+    {{ form_label(form.nomPrenom, 'Nom et Prenom') }}
+    {{ form_widget(form.nomPrenom, {'attr': {'class': 'form-control', 'placeholder':'Entrer votre nom et prenom'}}) }}
 </div>
-<div class="row justify-content-md-center">
-    <div class="col-6" id="formDirigeant">
-        {{ form_start(form) }}
-        <div class="mb-3">
-            {{ form_label(form.nomPrenom, 'Nom et Prenom') }}
-            {{ form_widget(form.nomPrenom, {'attr': {'class': 'form-control', 'placeholder':'Entrer votre nom et prenom'}}) }}
-        </div>
-        <div class="mb-3">
-            {{ form_label(form.nomPrenom, 'Sexe') }}
-            {{ form_widget(form.sexe) }}
-        </div>
-        <div class="mb-3">
-            {{ form_label(form.nomPrenom, 'Email') }}
-            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Entrer votre email'}}) }}
-        </div>
-        <button class="btn btn-info">{{ button_label|default('Ajouter dirigeant') }}</button>
-        {{ form_end(form) }}
-    </div>
+<div class="mb-3">
+    {{ form_label(form.nomPrenom, 'Sexe') }}
+    {{ form_widget(form.sexe) }}
 </div>
-<div class="row justify-content-md-center">
-    <div class="col-6" id="formSociete">
-        {{ form_start(form_societe) }}
-        <div class="mb-3">
-            {{ form_label(form.nomPrenom, 'Nom du société') }}
-            {{ form_widget(form_societe.nom, {'attr': {'class': 'form-control', 'placeholder': 'Entrer le nom du société'}}) }}
-        </div>
-        <div class="mb-3">
-            {{ form_label(form.nomPrenom, 'Description') }}
-            {{ form_widget(form_societe.description, {'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="mb-3">
-            {{ form_label(form.nomPrenom, 'Type du société') }}
-            {{ form_widget(form_societe.type, {'attr': {'class': 'form-control'}}) }}
-        </div>
-       <div class="mb-3">
-           {{ form_label(form.nomPrenom, 'Code Postal') }}
-           {{ form_widget(form_societe.codePostal, {'attr': {'class': 'form-control'}}) }}
-       </div>
-        <div class="mb-3">
-           {{ form_label(form.nomPrenom, 'Ville') }}
-           {{ form_widget(form_societe.ville, {'attr': {'class': 'form-control'}}) }}
-       </div>
-        <button class="btn btn-info">{{ button_label|default('Ajouter société') }}</button>
-        {{ form_end(form_societe) }}
-    </div>
+<div class="mb-3">
+    {{ form_label(form.nomPrenom, 'Email') }}
+    {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Entrer votre email'}}) }}
 </div>
+<button class="btn btn-info">{{ button_label|default('Ajouter dirigeant') }}</button>
+{{ form_end(form) }}
 
 

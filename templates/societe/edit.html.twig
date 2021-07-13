@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Societe{% endblock %}
+
+{% block body %}
+    {{ include('./navigation.html.twig') }}
+    <div class="container">
+        <div class="row justify-content-md-center">
+        <h1>Edit Societe</h1>
+            <div class="col-6">
+                {{ include('societe/_form.html.twig', {'button_label': 'Update'}) }}
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('main') }}">back to list</a>
+
+    {{ include('societe/_delete_form.html.twig') }}
+{% endblock %}

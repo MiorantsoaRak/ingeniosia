@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Ville;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -20,31 +21,15 @@ class VilleRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Ville[] Returns an array of Ville objects
+    //  * @return Ville[] an object array of type Ville
     //  */
-    /*
-    public function findByExampleField($value)
+    public function findByCodePostal($value)
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
+            ->andWhere('v.code = :val')
             ->setParameter('val', $value)
             ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult(Query::HYDRATE_ARRAY);
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Ville
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

@@ -3,6 +3,7 @@
 {% block title %}New CodePostal{% endblock %}
 
 {% block body %}
+    {{ include('./navigation.html.twig') }}
     <h1>Create new CodePostal</h1>
 
     {{ include('code_postal/_form.html.twig') }}

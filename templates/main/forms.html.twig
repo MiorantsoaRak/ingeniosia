@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+    {{ include('./navigation.html.twig') }}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <h1 class="text-center">Choisissez le formulaire à afficher</h1>
+            <div class="col-6">
+                <select name="show_form" id="showform" class="form-control">
+                    <option value="">--- Veuillez choisir parmi les options ---</option>
+                    <option value="dirigeant">Dirigeant</option>
+                    <option value="societe">Société</option>
+                </select>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-6" id="formDirigeant">
+                {{ include('./dirigeant/_form.html.twig') }}
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-6" id="formSociete">
+                {{ include('./societe/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

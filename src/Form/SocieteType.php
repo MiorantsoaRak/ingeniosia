@@ -21,7 +21,12 @@ class SocieteType extends AbstractType
             ->add('description')
             ->add('type', EntityType::class, [
                 'class' => TypeSociete::class,
-                'multiple' => true
+                'expanded' => true,
+                'multiple' => true,
+                'choice_attr' => function($choice, $key, $value) {
+                    // adds a class like attending_yes, attending_no, etc
+                    return ['class' => 'form-check-input'];
+                },
             ])
             ->add('codePostal', EntityType::class,[
                 'class'=>CodePostal::class

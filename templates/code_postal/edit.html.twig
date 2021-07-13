@@ -3,6 +3,7 @@
 {% block title %}Edit CodePostal{% endblock %}
 
 {% block body %}
+    {{ include('./navigation.html.twig') }}
     <h1>Edit CodePostal</h1>
 
     {{ include('code_postal/_form.html.twig', {'button_label': 'Update'}) }}
