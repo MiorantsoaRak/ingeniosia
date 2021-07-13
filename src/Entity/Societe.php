@@ -30,14 +30,15 @@ class Societe
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=TypeSociete::class, mappedBy="societe")
-     */
-    private $type;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="societes")
      */
     private $ville;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TypeSociete::class, inversedBy="societes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $type;
 
     public function __construct()
     {
@@ -73,36 +74,6 @@ class Societe
         return $this;
     }
 
-    /**
-     * @return Collection|TypeSociete[]
-     */
-    public function getType(): Collection
-    {
-        return $this->type;
-    }
-
-    public function addType(TypeSociete $type): self
-    {
-        if (!$this->type->contains($type)) {
-            $this->type[] = $type;
-            $type->setSociete($this);
-        }
-
-        return $this;
-    }
-
-    public function removeType(TypeSociete $type): self
-    {
-        if ($this->type->removeElement($type)) {
-            // set the owning side to null (unless already changed)
-            if ($type->getSociete() === $this) {
-                $type->setSociete(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getVille(): ?Ville
     {
         return $this->ville;
@@ -111,6 +82,18 @@ class Societe
     public function setVille(?Ville $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getType(): ?TypeSociete
+    {
+        return $this->type;
+    }
+
+    public function setType(?TypeSociete $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

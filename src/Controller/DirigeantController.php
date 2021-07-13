@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Dirigeant;
+use App\Entity\Societe;
 use App\Form\DirigeantType;
+use App\Form\SocieteType;
 use App\Repository\DirigeantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +33,11 @@ class DirigeantController extends AbstractController
     public function new(Request $request): Response
     {
         $dirigeant = new Dirigeant();
+        $societe = new Societe();
         $form = $this->createForm(DirigeantType::class, $dirigeant);
+        $formSociete = $this->createForm(SocieteType::class, $societe);
+
+        $formSociete->handleRequest($request);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -42,9 +48,18 @@ class DirigeantController extends AbstractController
             return $this->redirectToRoute('dirigeant_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        if ($formSociete->isSubmitted() && $formSociete->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($societe);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('dirigeant_index', [], Response::HTTP_SEE_OTHER);
+        }
+
         return $this->renderForm('dirigeant/new.html.twig', [
             'dirigeant' => $dirigeant,
             'form' => $form,
+            'form_societe'=>$formSociete
         ]);
     }
 

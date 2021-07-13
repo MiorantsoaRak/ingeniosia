@@ -2,3 +2,7 @@
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+{{ form_start(form_societe) }}
+    {{ form_widget(form_societe) }}
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form_societe) }}

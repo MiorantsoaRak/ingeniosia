@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TypeSocieteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,9 +30,14 @@ class TypeSociete
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Societe::class, inversedBy="type")
+     * @ORM\OneToMany(targetEntity=Societe::class, mappedBy="type", orphanRemoval=true)
      */
-    private $societe;
+    private $societes;
+
+    public function __construct()
+    {
+        $this->societes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -61,14 +68,32 @@ class TypeSociete
         return $this;
     }
 
-    public function getSociete(): ?Societe
+    /**
+     * @return Collection|Societe[]
+     */
+    public function getSocietes(): Collection
     {
-        return $this->societe;
+        return $this->societes;
     }
 
-    public function setSociete(?Societe $societe): self
+    public function addSociete(Societe $societe): self
     {
-        $this->societe = $societe;
+        if (!$this->societes->contains($societe)) {
+            $this->societes[] = $societe;
+            $societe->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSociete(Societe $societe): self
+    {
+        if ($this->societes->removeElement($societe)) {
+            // set the owning side to null (unless already changed)
+            if ($societe->getType() === $this) {
+                $societe->setType(null);
+            }
+        }
 
         return $this;
     }
