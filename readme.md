@@ -40,7 +40,7 @@ Create a database named `ingenosya` in MySQL and import the SQL file `test-ingen
 ```
 ./db/test-ingenosya.sql
 ```
-Make sure that the name of the database in the `.env` file is `ingenosya` too.
+Configure your database information in the `.env` file (database user, password, database name, database port,... )
 
 Usage
 -----
